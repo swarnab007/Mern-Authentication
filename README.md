@@ -30,6 +30,6 @@ A full-featured authentication system built with the MERN (MongoDB, Express, Rea
 ### Installation
 
 1. Clone the repository:
-   ``bash
+   ```bash
    git clone https://github.com/swarnab007/Mern-Authentication.git
    cd Mern-Authentication
