@@ -33,3 +33,22 @@ A full-featured authentication system built with the MERN (MongoDB, Express, Rea
    ```bash
    git clone https://github.com/swarnab007/Mern-Authentication.git
    cd Mern-Authentication
+   
+2. Install dependencies for both client and server:
+   ```bash
+   npm install
+   cd client
+   npm install
+3. Set up environment variables. Create a .env file in the root directory and add the following:
+   ```bash
+   MONGO_URI=your_mongo_uri
+   PORT=5000
+   JWT_SECRET=your_secret_key
+   NODE_ENV=development
+
+   MAILTRAP_TOKEN=your_mailtrap_token
+   MAILTRAP_ENDPOINT=https://send.api.mailtrap.io/
+
+4. Run this app locally
+   ```bash
+   npm run dev
