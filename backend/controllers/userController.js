@@ -1,7 +1,7 @@
 import { User } from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import { generateTokenAndSetCookie } from "../utils/generateTokenAndSetCookie.js";
-import { verifyEmail } from "../mailtrap/emails.js";
+import { sendVerifyEmail } from "../nodemailer/emails.js";
 
 // Register
 export const register = async (req, res) => {
@@ -31,7 +31,7 @@ export const register = async (req, res) => {
     await user.save();
     generateTokenAndSetCookie(res, user._id);
     // send verify Email
-    await verifyEmail(user.email, user.verifyPasswordToken);
+    await sendVerifyEmail(user.email, user.verifyPasswordToken);
 
     console.log(user);
 
@@ -45,5 +45,10 @@ export const register = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
+
+// verify code
+export const verifyCode = async (req, res) => {
+  const { code } = req.body;
+}
 
 // login
