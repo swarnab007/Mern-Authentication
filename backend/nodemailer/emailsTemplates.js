@@ -1,3 +1,84 @@
+export const WELCOME_EMAIL_TEMPLATE = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Email</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+    .email-container {
+      max-width: 600px;
+      margin: 20px auto;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+    .header {
+      background-color: #4caf50;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+    .header img {
+      max-width: 100px;
+      margin-bottom: 10px;
+    }
+    .content {
+      padding: 20px;
+      color: #333333;
+      line-height: 1.6;
+    }
+    .footer {
+      background-color: #f1f1f1;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      color: #555555;
+    }
+    .cta-button {
+      display: inline-block;
+      margin: 20px 0;
+      padding: 10px 20px;
+      background-color: #4caf50;
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="email-container">
+    <div class="header">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFMXuxEWdLdGuK4R_wLZavGA0Ynfnh2AodiQ&s" alt="Logo">
+      <h1>Welcome to Our Community!</h1>
+    </div>
+    <div class="content">
+      <p>Hi {User},</p>
+      <p>We're thrilled to have you here! 🎉</p>
+      <p>
+        Thank you for joining us. Our community is all about fun. 
+        We can't wait for you to explore everything we have to offer.
+      </p>
+      <a href="[your-link-here]" class="cta-button">Get Started</a>
+      <p>
+        If you have any questions, feel free to reply to this email. We're here to help!
+      </p>
+      <p>Cheers,<br>Little Dreams</p>
+    </div>
+    <div class="footer">
+      <p>&copy; 2003 Little Dreams. All rights reserved.</p>
+    </div>
+  </div>
+</body>
+</html>
+`;
+
 export const VERIFICATION_EMAIL_TEMPLATE = `
 <!DOCTYPE html>
 <html lang="en">
