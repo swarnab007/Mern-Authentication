@@ -1,29 +1,17 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Lock, Mail, User } from "lucide-react";
+import { Lock, Mail } from "lucide-react";
 import Input from "../components/Input";
-import { Link, useNavigate } from "react-router-dom";
-import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
-import { useAuthStore } from "../store/authStore";
 
-const RegisterPage = () => {
-  const [name, setName] = useState("");
+const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { register, isLoading, error } = useAuthStore();
-  const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
+    
 
-    // Register user
-    try {
-      await register(email, password, name);
-      navigate("/verify-email");
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  }
 
   return (
     <motion.div
@@ -35,16 +23,9 @@ const RegisterPage = () => {
     >
       <div className="p-8">
         <h2 className="text-3xl font-bold mb-6 text-center bg-gradient-to-r from-green-400 to-emerald-500 text-transparent bg-clip-text">
-          Create Your Account
+          Log in to your account
         </h2>
-        <form onSubmit={handleSubmit}>
-          <Input
-            icon={User}
-            type="text"
-            placeholder="Full Name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
+        <form onSubmit={handleLogin}>
           <Input
             icon={Mail}
             type="email"
@@ -59,10 +40,6 @@ const RegisterPage = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          {error && <p className="text-red-500 font-semibold mt-2">{error}</p>}
-          {/* Password Strength meter */}
-
-          <PasswordStrengthMeter password={password} />
           <motion.button
             type="submit"
             className="mt-5 w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
@@ -72,20 +49,12 @@ const RegisterPage = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            {isLoading ? "Loading..." : "Register"}
+            Log in
           </motion.button>
         </form>
-      </div>
-      <div className="px-8 py-4 bg-gray-900 bg-opacity-50 flex justify-center">
-        <p className="text-sm text-gray-400">
-          Already Have an Account ?{" "}
-          <Link className="text-green-400 hover:underline" to={"/login"}>
-            Log in
-          </Link>
-        </p>
       </div>
     </motion.div>
   );
 };
 
-export default RegisterPage;
+export default LoginPage;
