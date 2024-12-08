@@ -2,16 +2,29 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Lock, Mail } from "lucide-react";
 import Input from "../components/Input";
+import { useAuthStore } from "../store/authStore";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, isLoading, error } = useAuthStore();
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    
 
-  }
+    // Add login logic here
+    try {
+      await login(email, password);
+      toast.success("Logged in successfully");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
 
   return (
     <motion.div
@@ -27,6 +40,7 @@ const LoginPage = () => {
         </h2>
         <form onSubmit={handleLogin}>
           <Input
+            required
             icon={Mail}
             type="email"
             placeholder="Email"
@@ -34,12 +48,14 @@ const LoginPage = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
+            required
             icon={Lock}
             type="password"
             placeholder="Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
           <motion.button
             type="submit"
             className="mt-5 w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
@@ -49,7 +65,7 @@ const LoginPage = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Log in
+            {isLoading ? "Loading..." : "Log in"}
           </motion.button>
         </form>
       </div>

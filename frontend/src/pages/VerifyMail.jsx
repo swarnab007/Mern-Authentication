@@ -2,13 +2,14 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useAuthStore } from "../store/authStore";
+import toast from "react-hot-toast";
 
 const VerifyMail = () => {
   const [code, setCode] = useState(["", "", "", ""]);
   const inputRefs = useRef([]);
   const navigate = useNavigate();
 
-  const { error, isLoading } = useAuthStore();
+  const { error, isLoading, verifyEmail } = useAuthStore();
 
   const handleChange = (index, value) => {
     const newCode = [...code];
@@ -48,7 +49,7 @@ const VerifyMail = () => {
     try {
       await verifyEmail(verificationCode);
       navigate("/");
-      // toast.success("Email verified successfully");
+      toast.success("Email verified successfully");
     } catch (error) {
       console.log(error);
     }
@@ -83,6 +84,7 @@ const VerifyMail = () => {
                 key={index}
                 ref={(el) => (inputRefs.current[index] = el)}
                 type="text"
+                required
                 maxLength="1"
                 value={digit}
                 onChange={(e) => handleChange(index, e.target.value)}

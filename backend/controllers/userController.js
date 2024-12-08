@@ -87,8 +87,14 @@ export const verifyCode = async (req, res) => {
 
 // login
 export const login = async (req, res) => {
+  console.log(req.body);
+
   const { email, password } = req.body;
   try {
+    if (!email || !password) {
+      return res.status(400).json({ message: "Please fill in all fields" });
+    }
+
     // find user in db
     const user = await User.findOne({ email });
     if (!user) {
@@ -113,6 +119,7 @@ export const login = async (req, res) => {
     res
       .status(200)
       .json({ success: true, message: "User logged in successfully" });
+    console.log(user);
   } catch (error) {
     console.error(error);
     res.status(400).json({ success: false, message: error.message });

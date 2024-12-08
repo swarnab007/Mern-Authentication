@@ -5,6 +5,7 @@ import Input from "../components/Input";
 import { Link, useNavigate } from "react-router-dom";
 import PasswordStrengthMeter from "../components/PasswordStrengthMeter";
 import { useAuthStore } from "../store/authStore";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -19,6 +20,7 @@ const RegisterPage = () => {
     // Register user
     try {
       await register(email, password, name);
+      toast.success("Account created successfully. Please verify your email.");
       navigate("/verify-email");
     } catch (error) {
       console.error(error);
