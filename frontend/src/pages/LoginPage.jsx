@@ -5,6 +5,7 @@ import Input from "../components/Input";
 import { useAuthStore } from "../store/authStore";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -56,9 +57,18 @@ const LoginPage = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+
+          <div className="flex items-center mb-6">
+            <Link
+              to="/forgot-password"
+              className="text-sm text-green-500 hover:underline"
+            >
+              Forgot password?
+            </Link>
+          </div>
           <motion.button
             type="submit"
-            className="mt-5 w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
+            className="mt-2 w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white 
 						font-bold rounded-lg shadow-lg hover:from-green-600
 						hover:to-emerald-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2
 						 focus:ring-offset-gray-900 transition duration-200"
@@ -68,6 +78,14 @@ const LoginPage = () => {
             {isLoading ? "Loading..." : "Log in"}
           </motion.button>
         </form>
+      </div>
+      <div className="flex justify-center items-center bg-gray-700 bg-opacity-50 p-6">
+        <p className="text-gray-400 text-sm">
+          Don't have an account?{" "}
+          <Link to="/register" className="text-green-500 hover:underline">
+            Register
+          </Link>
+        </p>
       </div>
     </motion.div>
   );
